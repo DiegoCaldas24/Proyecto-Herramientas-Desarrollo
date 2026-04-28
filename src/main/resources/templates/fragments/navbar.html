@@ -12,7 +12,7 @@
             <p style="font-size: 0.875rem; color: var(--color-text-medium);">Gestión Laboral</p>
         </div>
         <nav class="sidebar-nav">
-            <a th:if="${userRol == 'ADMINISTRADOR'}" th:href="@{/dashboard}" class="nav-link"
+            <a  th:href="@{/dashboard}" class="nav-link"
                 th:classappend="${active == 'dashboard' ? 'nav-link-active' : ''}">
                 <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -21,7 +21,7 @@
                 </svg>
                 <span>Dashboard</span>
             </a>
-            <a th:if="${userRol == 'ADMINISTRADOR'}" th:href="@{/employees}" class="nav-link"
+            <a  th:href="@{/employees}" class="nav-link"
                 th:classappend="${active == 'employees' ? 'nav-link-active' : ''}">
                 <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -30,7 +30,7 @@
                 </svg>
                 <span>Empleados</span>
             </a>
-            <a th:if="${userRol == 'ADMINISTRADOR'}" th:href="@{/reports}" class="nav-link"
+            <a th:href="@{/reports}" class="nav-link"
                 th:classappend="${active == 'reports' ? 'nav-link-active' : ''}">
                 <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"

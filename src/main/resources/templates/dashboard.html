@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="es" xmlns:th="http://www.thymeleaf.org"
-    th:replace="~{/fragments/layout :: layout(~{::title},~{::main},'dashboard',~{::script})}">
+    th:replace="~{fragments/layout :: layout(~{::title},~{::main},'dashboard',~{::script})}">
 
 <head>
     <title>Dashboard | Sistema de Gestión de Empleados</title>
@@ -11,7 +11,6 @@
         <header class="header">
             <h2 class="header-title">Dashboard General</h2>
             <div class="header-user-info">
-                <span class="user-greeting" th:text="${userName}"></span>
                 <div class="user-avatar">MR</div>
             </div>
         </header>
@@ -31,7 +30,6 @@
 
                 <div class="metric-card card-success">
                     <p class="metric-title">A Tiempo Hoy</p>
-                    <p class="metric-value" th:text="${attendanceWell}"></p>
                     <div class="metric-detail text-success">
 
                         <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -44,7 +42,6 @@
 
                 <div class="metric-card card-warning">
                     <p class="metric-title">Tardanzas Hoy</p>
-                    <p class="metric-value" th:text="${attendanceMid}"></p>
                     <div class="metric-detail text-warning">
 
                         <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -57,7 +54,6 @@
 
                 <div class="metric-card card-danger">
                     <p class="metric-title">Ausencias Reportadas</p>
-                    <p class="metric-value" th:text="${attendanceBad}"></p>
                     <div class="metric-detail text-danger">
                         <!-- Icono Rayo -->
                         <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -82,13 +78,6 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr th:each="assist : ${assistance}">
-                                <td th:text="${assist.getEmployees().names}"></td>
-                                <td th:text="${assist.getEmployees().department.name}"></td>
-                                <td th:text="${assist.getStatusExit()}"></td>
-                                <td th:text="${assist.getEntryDate()}"></td>
-                                <td th:text="${assist.getStatus()}"></td>
-                            </tr>
                         </tbody>
                     </table>
                 </div>
