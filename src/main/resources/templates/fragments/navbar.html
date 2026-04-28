@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Navbar</title>
+</head>
+
+<body>
+    <aside class="sidebar" th:fragment="navbar(active)">
+        <div class="sidebar-header">
+            <h1 style="font-size: 1.5rem; font-weight: 700; color: var(--color-primary);">HR Manager</h1>
+            <p style="font-size: 0.875rem; color: var(--color-text-medium);">Gestión Laboral</p>
+        </div>
+        <nav class="sidebar-nav">
+            <a  th:href="@{/dashboard}" class="nav-link"
+                th:classappend="${active == 'dashboard' ? 'nav-link-active' : ''}">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l-7-7m7 7v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6">
+                    </path>
+                </svg>
+                <span>Dashboard</span>
+            </a>
+            <a  th:href="@{/employees}" class="nav-link"
+                th:classappend="${active == 'employees' ? 'nav-link-active' : ''}">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20v-2c-.523-.34-1.056-.668-1.748-.813a10.02 10.02 0 00-6.23-0.071c-.722.146-1.396.451-1.996.848m1.996.848V18m0 0V16a3 3 0 00-3-3H9a3 3 0 00-3 3v2m9 0V18m0 0a3 3 0 003-3V9a3 3 0 00-3-3H9a3 3 0 00-3 3v6a3 3 0 003 3h3m2-7a2 2 0 11-4 0 2 2 0 014 0z">
+                    </path>
+                </svg>
+                <span>Empleados</span>
+            </a>
+            <a th:href="@{/reports}" class="nav-link"
+                th:classappend="${active == 'reports' ? 'nav-link-active' : ''}">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M9 19V6l12-3v14m-5 0V7a1 1 0 00-1-1H9a1 1 0 00-1 1v12m-6 0v2h20v-2H3z"></path>
+                </svg>
+                <span>Reportes</span>
+            </a>
+            <a th:href="@{/registerAttendance}" class="nav-link"
+                th:classappend="${active == 'attendance' ? 'nav-link-active' : ''}">
+
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M8 7V3m8 4V3M5 9h14M7 13l2 2 4-4m-8 8h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z">
+                    </path>
+                </svg>
+                <span>Asistencia</span>
+            </a>
+        </nav>
+        <div class="sidebar-footer">
+            <a th:href="@{/logout}" class="nav-link">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3v-1a1 1 0 011-1h10a1 1 0 011 1z">
+                    </path>
+                </svg>
+                <span>Cerrar Sesión</span>
+            </a>
+        </div>
+    </aside>
+</body>
+
+</html>

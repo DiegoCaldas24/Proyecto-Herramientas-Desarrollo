@@ -1,0 +1,317 @@
+/* 2. Contenido Principal */
+.main-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    width: 83vw;
+}
+
+.header {
+    background-color: #ffffff;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    padding: 16px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 10;
+}
+
+.user-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 9999px;
+    background-color: var(--color-primary-light);
+    color: #ffffff;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.content-area {
+    flex: 1;
+    overflow-y: auto;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+}
+
+@media (min-width: 768px) {
+    .content-area {
+        padding: 32px;
+    }
+}
+
+/* 3. Estilos de la Sección de Gestión de Empleados */
+.management-section {
+    background-color: #ffffff;
+    padding: 24px;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    border: 1px solid #e5e7eb;
+}
+
+.management-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+    flex-wrap: wrap; /* Para mobile */
+    gap: 16px;
+}
+
+.btn-add {
+    background-color: var(--color-success);
+    color: white;
+    padding: 10px 18px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background-color 0.2s, transform 0.1s;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.btn-add:hover {
+    background-color: #059669;
+    transform: translateY(-1px);
+}
+
+.btn-add svg {
+    width: 20px;
+    height: 20px;
+}
+
+/* Tabla de Empleados */
+.table-container {
+    overflow-x: auto;
+}
+
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.data-table thead th {
+    padding: 5px 10px;
+    text-align: center;
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: var(--color-text-medium);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    background-color: #f9fafb;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.data-table tbody td {
+    padding: 5px 10px;
+    font-size: 0.875rem;
+    color: var(--color-text-dark);
+    border-bottom: 1px solid #f3f4f6;
+    white-space: nowrap;
+}
+
+.data-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+/* Botones de Acción en Fila */
+.action-buttons button {
+    padding: 6px 10px;
+    margin-right: 8px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.875rem;
+    font-weight: 500;
+    transition: background-color 0.2s;
+}
+
+.btn-edit {
+    background-color: var(--color-primary-light);
+    color: white;
+}
+.btn-edit:hover {
+    background-color: var(--color-primary);
+}
+
+.btn-delete {
+    background-color: var(--color-danger);
+    color: white;
+}
+.btn-delete:hover {
+    background-color: #b91c1c;
+}
+
+/* 4. Modal para Crear/Editar Empleado */
+.modal {
+    display: none; /* Oculto por defecto */
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.4);
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 10px auto; /* 5% desde el top y centrado */
+    padding: 10px 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    max-width: 500px;
+    width: 90%;
+    position: relative;
+}
+
+.close-button {
+    color: var(--color-text-dark);
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    line-height: 1;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.close-button:hover,
+.close-button:focus {
+    color: var(--color-danger);
+    text-decoration: none;
+}
+
+.modal-form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.inputs{
+    display: flex;
+    flex-direction: column;
+    align-content: space-between;
+}
+.modal-form label {
+    font-weight: 600;
+    color: var(--color-text-dark);
+    font-size: 0.875rem;
+    margin-bottom: 4px;
+    display: block;
+}
+
+.modal-form input, .modal-form select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    box-sizing: border-box;
+    transition: border-color 0.2s;
+}
+
+.modal-form input:focus, .modal-form select:focus {
+    border-color: var(--color-primary-light);
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+}
+
+.btn-save {
+    background-color: var(--color-primary-light);
+    color: white;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background-color 0.2s;
+    margin-top: 10px;
+}
+
+.btn-save:hover {
+    background-color: var(--color-primary);
+}
+
+/* Estilo para el Modal de Confirmación */
+#confirmModal .modal-content {
+    max-width: 350px;
+    text-align: center;
+}
+
+#confirmModal p {
+    font-size: 1rem;
+    color: var(--color-text-dark);
+    margin-bottom: 20px;
+}
+
+.confirm-actions {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.btn-cancel {
+    background-color: #e5e7eb;
+    color: var(--color-text-dark);
+    padding: 10px 15px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.btn-confirm-delete {
+    background-color: var(--color-danger);
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.popup-container {
+    position: fixed;      /* Fijo respecto a toda la pantalla */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;        /* Para centrar */
+    justify-content: center;
+    align-items: center;
+    background: rgba(0,0,0,0.4);
+    z-index: 9999;        /* Mucho más alto que otros elementos */
+}
+
+.popup-box {
+    background: #fff;
+    padding: 20px 30px;
+    border-radius: 10px;
+    text-align: center;
+    min-width: 260px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    animation: fadeIn 0.2s ease-in-out;
+}
+
+.popup-box button {
+    margin-top: 15px;
+    padding: 8px 15px;
+    border: none;
+    background: #007bff;
+    color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+@keyframes fadeIn {
+    from { transform: scale(0.8); opacity: 0; }
+    to   { transform: scale(1); opacity: 1; }
+}
