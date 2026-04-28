@@ -1,0 +1,347 @@
+ /* Variables de Color */
+ :root {
+     --color-primary: #1e40af;
+     /* Azul oscuro (similar al anterior) */
+     --color-success: #10b981;
+     /* Verde para acción principal/Entrada */
+     --color-secondary: #3b82f6;
+     --color-danger: #ef4444;
+     /* Azul claro para acción secundaria/Salida */
+     color: var(--color-danger);
+     margin-bottom: 24px;
+     background-color: #ffffff;
+     padding: 10px 20px;
+     border-radius: 8px;
+     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+     letter-spacing: 2px;
+     width: fit-content;
+     text-align: center;
+ }
+
+ /* Contenedor Principal de la Interfaz */
+ .attendance-card {
+     background-color: #ffffff;
+     padding: 40px;
+     border-radius: 16px;
+     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+     max-width: 450px;
+     width: 100%;
+     text-align: center;
+ }
+
+ .title {
+     font-size: 1.8rem;
+     font-weight: 700;
+     color: var(--color-primary);
+     margin-top: 0;
+     margin-bottom: 8px;
+ }
+
+ .subtitle {
+     font-size: 1rem;
+     color: var(--color-text-medium);
+     margin-bottom: 24px;
+ }
+
+ /* Botones de Selección de Modo (Entrada/Salida) */
+ .mode-selector {
+     display: flex;
+     gap: 10px;
+     margin-bottom: 24px;
+ }
+
+ .mode-button {
+     flex: 1;
+     padding: 12px 15px;
+     font-size: 1rem;
+     font-weight: 600;
+     border: 2px solid #ccc;
+     border-radius: 8px;
+     cursor: pointer;
+     transition: all 0.2s ease;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     background-color: #f9fafb;
+     color: var(--color-text-medium);
+ }
+
+ /* Estilos específicos para los botones */
+ .mode-button-entrada {
+     border-color: var(--color-success);
+ }
+
+ .mode-button-salida {
+     border-color: var(--color-secondary);
+ }
+
+ .mode-button.active {
+     color: #ffffff;
+     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+     border: none;
+ }
+
+ .mode-button.active-entrada {
+     background-color: var(--color-success);
+ }
+
+ .mode-button.active-salida {
+     background-color: var(--color-secondary);
+ }
+
+ .mode-button svg {
+     width: 20px;
+     height: 20px;
+     margin-right: 8px;
+ }
+
+ /* Campo de Input */
+ .employee-input {
+     width: 100%;
+     padding: 12px;
+     font-size: 1rem;
+     border: 2px solid #e5e7eb;
+     border-radius: 8px;
+     box-sizing: border-box;
+     margin-bottom: 24px;
+     transition: border-color 0.2s;
+     outline: none;
+     color: var(--color-text-dark);
+     text-align: center;
+ }
+
+ .employee-input:focus {
+     border-color: var(--color-primary-light);
+     box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.3);
+ }
+
+ /* Botón de Acción Principal (Registrar) */
+ .action-button {
+     width: 100%;
+     padding: 15px;
+     font-size: 1.1rem;
+     font-weight: 700;
+     color: #ffffff;
+     border: none;
+     border-radius: 8px;
+     cursor: pointer;
+     transition: background-color 0.2s, transform 0.1s, box-shadow 0.2s;
+     text-transform: uppercase;
+ }
+
+ .action-button:hover {
+     transform: translateY(-1px);
+     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+ }
+
+ .action-button:active {
+     transform: translateY(0);
+ }
+
+ /* Estilos dinámicos del botón */
+ .button-entrada {
+     background-color: var(--color-success);
+ }
+
+ .button-salida {
+     background-color: var(--color-secondary);
+ }
+
+ /* Ocultar el spinner en el input number */
+ /* Variables de Color */
+ :root {
+     --color-primary: #1e40af;
+     /* Azul oscuro (similar al anterior) */
+     --color-success: #10b981;
+     /* Verde para acción principal/Entrada */
+     --color-secondary: #3b82f6;
+     /* Azul claro para acción secundaria/Salida */
+     color: var(--color-text-dark);
+     margin-bottom: 24px;
+     background-color: #ffffff;
+     padding: 10px 20px;
+     border-radius: 8px;
+     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+     letter-spacing: 2px;
+     width: fit-content;
+     text-align: center;
+ }
+
+ /* Contenedor Principal de la Interfaz */
+ .attendance-card {
+     background-color: #ffffff;
+     padding: 40px;
+     border-radius: 16px;
+     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+     max-width: 450px;
+     width: 100%;
+     text-align: center;
+ }
+
+ .title {
+     font-size: 1.8rem;
+     font-weight: 700;
+     color: var(--color-primary);
+     margin-top: 0;
+     margin-bottom: 8px;
+ }
+
+ .subtitle {
+     font-size: 1rem;
+     color: var(--color-text-medium);
+     margin-bottom: 24px;
+ }
+
+ /* Botones de Selección de Modo (Entrada/Salida) */
+ .mode-selector {
+     display: flex;
+     gap: 10px;
+     margin-bottom: 24px;
+ }
+
+ .mode-button {
+     flex: 1;
+     padding: 12px 15px;
+     font-size: 1rem;
+     font-weight: 600;
+     border: 2px solid #ccc;
+     border-radius: 8px;
+     cursor: pointer;
+     transition: all 0.2s ease;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     background-color: #f9fafb;
+     color: var(--color-text-medium);
+ }
+
+ /* Estilos específicos para los botones */
+ .mode-button-entrada {
+     border-color: var(--color-success);
+ }
+
+ .mode-button-salida {
+     border-color: var(--color-secondary);
+ }
+
+ .mode-button.active {
+     color: #ffffff;
+     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+     border: none;
+ }
+
+ .mode-button.active-entrada {
+     background-color: var(--color-success);
+ }
+
+ .mode-button.active-salida {
+     background-color: var(--color-secondary);
+ }
+
+ .mode-button svg {
+     width: 20px;
+     height: 20px;
+     margin-right: 8px;
+ }
+
+ /* Campo de Input */
+ .employee-input {
+     width: 100%;
+     padding: 12px;
+     font-size: 1rem;
+     border: 2px solid #e5e7eb;
+     border-radius: 8px;
+     box-sizing: border-box;
+     margin-bottom: 24px;
+     transition: border-color 0.2s;
+     outline: none;
+     color: var(--color-text-dark);
+     text-align: center;
+ }
+
+ .employee-input:focus {
+     border-color: var(--color-primary-light);
+     box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.3);
+ }
+
+ /* Botón de Acción Principal (Registrar) */
+ .action-button {
+     width: 100%;
+     padding: 15px;
+     font-size: 1.1rem;
+     font-weight: 700;
+     color: #ffffff;
+     border: none;
+     border-radius: 8px;
+     cursor: pointer;
+     transition: background-color 0.2s, transform 0.1s, box-shadow 0.2s;
+     text-transform: uppercase;
+ }
+
+ .action-button:hover {
+     transform: translateY(-1px);
+     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+ }
+
+ .action-button:active {
+     transform: translateY(0);
+ }
+
+ /* Estilos dinámicos del botón */
+ .button-entrada {
+     background-color: var(--color-success);
+ }
+
+ .button-salida {
+     background-color: var(--color-secondary);
+ }
+
+ /* Ocultar el spinner en el input number */
+ input[type=number]::-webkit-inner-spin-button,
+ input[type=number]::-webkit-outer-spin-button {
+     -webkit-appearance: none;
+     margin: 0;
+ }
+
+ input[type=number] {
+     -moz-appearance: textfield;
+     appearance: textfield;
+ }
+
+ .popup-container {
+     position: fixed;      /* Fijo respecto a toda la pantalla */
+     top: 0;
+     left: 0;
+     width: 100%;
+     height: 100%;
+     display: flex;        /* Para centrar */
+     justify-content: center;
+     align-items: center;
+     background: rgba(0,0,0,0.4);
+     z-index: 9999;        /* Mucho más alto que otros elementos */
+ }
+
+ .popup-box {
+     background: #fff;
+     padding: 20px 30px;
+     border-radius: 10px;
+     text-align: center;
+     min-width: 260px;
+     box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+     animation: fadeIn 0.2s ease-in-out;
+ }
+
+ .popup-box button {
+     margin-top: 15px;
+     padding: 8px 15px;
+     border: none;
+     background: #007bff;
+     color: #fff;
+     border-radius: 5px;
+     cursor: pointer;
+ }
+
+ @keyframes fadeIn {
+     from { transform: scale(0.8); opacity: 0; }
+     to   { transform: scale(1); opacity: 1; }
+ }

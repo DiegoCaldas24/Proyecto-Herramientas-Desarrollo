@@ -1,0 +1,127 @@
+/* Variables */
+:root {
+    --color-primary: #1e40af; /* Azul Corporativo */
+    --color-background: #f7f9fc; /* Fondo claro */
+    --color-text-dark: #1f2937; /* Gray-800 */
+    --color-text-medium: #6b7280; /* Gray-500 */
+    --color-text-light: #4b5563; /* Gray-700 */
+    --color-danger-bg: #fef2f2; /* Red-50 */
+    --color-danger-text: #b91c1c; /* Red-700 */
+    --color-danger-border: #fecaca; /* Red-200 */
+}
+
+/* Estilos Base del Body */
+body {
+    font-family: 'Inter', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: var(--color-background);
+    display: flex;
+    justify-content: center; /* Centrar horizontalmente */
+    align-items: center; /* Centrar verticalmente */
+    min-height: 100vh;
+}
+
+/* Contenedor Principal del Login */
+.login-card {
+    max-width: 420px;
+    width: 90%;
+    background-color: #ffffff;
+    border-radius: 1rem; /* Esquinas redondeadas grandes */
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1), 0 4px 6px rgba(0, 0, 0, 0.05); /* Sombra */
+    padding: 2.5rem 2rem;
+    box-sizing: border-box; /* Asegura que el padding no aumente el width */
+}
+
+/* Encabezado */
+.login-header {
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.login-header h1 {
+    font-size: 1.875rem; /* 3xl */
+    font-weight: 700; /* bold */
+    color: var(--color-text-dark);
+    margin: 0;
+}
+
+.login-header p {
+    color: var(--color-text-medium);
+    margin-top: 0.5rem;
+    font-size: 1rem;
+}
+
+/* Formulario y espaciado */
+.login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem; /* space-y-6 */
+}
+
+/* Etiquetas y Campos de Entrada */
+.form-group label {
+    display: block;
+    font-size: 0.875rem; /* sm */
+    font-weight: 500;
+    color: var(--color-text-light);
+    margin-bottom: 0.25rem; /* mb-1 */
+}
+
+.input-field {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #d1d5db;
+    border-radius: 0.5rem;
+    box-sizing: border-box; /* Crucial para width: 100% */
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.input-field:focus {
+    border-color: var(--color-primary);
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(30, 64, 175, 0.2);
+}
+
+/* Botón de Envío */
+.btn-submit {
+    width: 100%;
+    padding: 0.75rem;
+    background-color: var(--color-primary);
+    color: white;
+    font-weight: 600;
+    border: none;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.1s;
+}
+
+.btn-submit:hover {
+    background-color: #1a368d; /* Color un poco más oscuro que var(--color-primary) */
+    transform: translateY(-1px);
+}
+
+/* Mensaje de Alerta */
+.alert-message {
+    margin-top: 1rem;
+    padding: 0.75rem;
+    border-radius: 0.5rem;
+    background-color: var(--color-danger-bg);
+    color: var(--color-danger-text);
+    font-size: 0.875rem;
+    font-weight: 500;
+    border: 1px solid var(--color-danger-border);
+    text-align: center;
+}
+
+.hidden {
+    display: none;
+}
+
+/* Texto de Credenciales de Prueba */
+.test-credentials {
+    text-align: center;
+    font-size: 0.75rem; /* xs */
+    color: #9ca3af; /* Gray-400 */
+    padding-top: 0.5rem; /* pt-2 */
+}
