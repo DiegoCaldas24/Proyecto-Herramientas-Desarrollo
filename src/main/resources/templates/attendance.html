@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{/fragments/layout :: layout(~{::title},~{::main},'attendance',~{::script})}">
+<head>
+    <title>Registro de Asistencia</title>
+</head>
+<body>
+<main style="width: 90vw">
+    <div id="popup" class="popup-container" th:if="${message}">
+        <div class="popup-box">
+            <p th:text="${message}"></p>
+        </div>
+    </div>
+
+    <div class="attendance-card" style="margin: 10% 20%">
+
+        <div id="clock" class="clock-display">00:00:00</div>
+
+        <h1 class="title">Registro de Asistencia</h1>
+        <p class="subtitle">Ingresa tu DNI para registrar tu entrada o salida</p>
+
+        <form method="post" id="employeeForm" th:action="@{/registerAttendance/attendance}">
+
+            <input type="text" id="employeeId" name="dni" class="employee-input" minlength="8" maxlength="8"
+                   placeholder="No. de DNI del Empleado" required>
+
+            <button id="actionButton" class="action-button button-entrada">
+                Registrar
+            </button>
+        </form>
+
+    </div>
+</main>
+<script th:src="@{/scripts/attendance.js}"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const popup = document.getElementById("popup");
+
+        if (popup) {
+            popup.style.display = "flex";
+            setTimeout(() => {
+                popup.style.display = "none";
+            }, 1500);
+        }
+    });
+</script>
+</body>
+</html>
