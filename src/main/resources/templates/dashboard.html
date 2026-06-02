@@ -1,20 +1,19 @@
 <!DOCTYPE html>
 <html lang="es" xmlns:th="http://www.thymeleaf.org"
-      th:replace="~{/fragments/layout :: layout(~{::title},~{::main},'dashboard',~{::script})}">
+    th:replace="~{fragments/layout :: layout(~{::title},~{::main},'dashboard',~{::script})}">
 
 <head>
     <title>Dashboard | Sistema de Gestión de Empleados</title>
 </head>
 
 <body>
-<main class="main-content">
-    <header class="header">
-        <h2 class="header-title">Dashboard General</h2>
-        <div class="header-user-info">
-            <span class="user-greeting" th:text="${userName}"></span>
-            <div class="user-avatar">MR</div>
-        </div>
-    </header>
+    <main class="main-content">
+        <header class="header">
+            <h2 class="header-title">Dashboard General</h2>
+            <div class="header-user-info">
+                <div class="user-avatar">MR</div>
+            </div>
+        </header>
 
     <div class="content-area">
 
@@ -29,10 +28,9 @@
             </div>
 
 
-            <div class="metric-card card-success">
-                <p class="metric-title">A Tiempo Hoy</p>
-                <p class="metric-value" th:text="${attendanceWell}"></p>
-                <div class="metric-detail text-success">
+                <div class="metric-card card-success">
+                    <p class="metric-title">A Tiempo Hoy</p>
+                    <div class="metric-detail text-success">
 
                     <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l5 5l10-10">
@@ -42,10 +40,9 @@
             </div>
 
 
-            <div class="metric-card card-warning">
-                <p class="metric-title">Tardanzas Hoy</p>
-                <p class="metric-value" th:text="${attendanceMid}"></p>
-                <div class="metric-detail text-warning">
+                <div class="metric-card card-warning">
+                    <p class="metric-title">Tardanzas Hoy</p>
+                    <div class="metric-detail text-warning">
 
                     <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -55,15 +52,34 @@
                 </div>
             </div>
 
-            <div class="metric-card card-danger">
-                <p class="metric-title">Ausencias Reportadas</p>
-                <p class="metric-value" th:text="${attendanceBad}"></p>
-                <div class="metric-detail text-danger">
-                    <!-- Icono Rayo -->
-                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                              d="M13 10V3L4 14h7v7l9-11h-7z"></path>
-                    </svg>
+                <div class="metric-card card-danger">
+                    <p class="metric-title">Ausencias Reportadas</p>
+                    <div class="metric-detail text-danger">
+                        <!-- Icono Rayo -->
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                        </svg>
+                    </div>
+                </div>
+            </section>
+
+            <section class="table-section">
+                <h3 class="section-title">Registro de Marcas Recientes</h3>
+                <div class="table-container">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Empleado</th>
+                                <th>Departamento</th>
+                                <th>Tipo de Marca</th>
+                                <th>Hora</th>
+                                <th>Estado</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </section>
