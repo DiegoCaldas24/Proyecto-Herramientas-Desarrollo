@@ -9,10 +9,10 @@
     <aside class="sidebar" th:fragment="navbar(active)">
         <div class="sidebar-header">
             <h1 style="font-size: 1.5rem; font-weight: 700; color: var(--color-primary);">HR Manager</h1>
-            <p style="font-size: 0.875rem; color: var(--color-text-medium);">Gestión Laboral</p>
+            <p style="font-size: 0.875rem; color: var(--color-text-medium);">Gesti&oacute;n Laboral</p>
         </div>
         <nav class="sidebar-nav">
-            <a  th:href="@{/dashboard}" class="nav-link"
+            <a th:href="@{/dashboard}" class="nav-link"
                 th:classappend="${active == 'dashboard' ? 'nav-link-active' : ''}">
                 <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -21,7 +21,8 @@
                 </svg>
                 <span>Dashboard</span>
             </a>
-            <a  th:href="@{/employees}" class="nav-link"
+
+            <a th:if="${userRol == 'ADMINISTRADOR'}" th:href="@{/employees}" class="nav-link"
                 th:classappend="${active == 'employees' ? 'nav-link-active' : ''}">
                 <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -30,7 +31,17 @@
                 </svg>
                 <span>Empleados</span>
             </a>
-            <a th:href="@{/reports}" class="nav-link"
+
+            <a th:if="${userRol == 'ADMINISTRADOR'}" th:href="@{/users}" class="nav-link"
+                th:classappend="${active == 'users' ? 'nav-link-active' : ''}">
+                <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"></path>
+                </svg>
+                <span>Usuarios</span>
+            </a>
+
+            <a th:if="${userRol == 'ADMINISTRADOR' or userRol == 'TRABAJADOR'}" th:href="@{/reports}" class="nav-link"
                 th:classappend="${active == 'reports' ? 'nav-link-active' : ''}">
                 <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -38,9 +49,9 @@
                 </svg>
                 <span>Reportes</span>
             </a>
-            <a th:href="@{/registerAttendance}" class="nav-link"
-                th:classappend="${active == 'attendance' ? 'nav-link-active' : ''}">
 
+            <a th:if="${userRol == 'ADMINISTRADOR' or userRol == 'TRABAJADOR'}" th:href="@{/registerAttendance}" class="nav-link"
+                th:classappend="${active == 'attendance' ? 'nav-link-active' : ''}">
                 <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                         d="M8 7V3m8 4V3M5 9h14M7 13l2 2 4-4m-8 8h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z">
@@ -56,7 +67,7 @@
                         d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3v-1a1 1 0 011-1h10a1 1 0 011 1z">
                     </path>
                 </svg>
-                <span>Cerrar Sesión</span>
+                <span>Cerrar Sesi&oacute;n</span>
             </a>
         </div>
     </aside>

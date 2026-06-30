@@ -20,9 +20,9 @@ public class SecurityConfig {
                         .requestMatchers("/error/**").permitAll()
                         .requestMatchers("/styles/**", "/scripts/**", "/login", "/registerAttendance", "/registerAttendance/**").permitAll()
 
-                        .requestMatchers("/reports", "/").hasAnyRole("ADMINISTRADOR", "USUARIO", "TRABAJADOR")
+                        .requestMatchers("/reports", "/").hasAnyRole("ADMINISTRADOR", "TRABAJADOR")
 
-                        .requestMatchers("/employees", "/employees/**").hasAnyRole("ADMINISTRADOR")
+                        .requestMatchers("/employees", "/employees/**", "/users", "/users/**").hasAnyRole("ADMINISTRADOR")
 
                         .anyRequest().authenticated()
                 )
