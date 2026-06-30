@@ -20,7 +20,7 @@ public class UserModel {
     private int idUser;
 
     @ManyToOne
-    @JoinColumn(name = "id_employee")
+    @JoinColumn(name = "id_employee", nullable = true)
     private EmployeesModel employee;
 
     private String email;

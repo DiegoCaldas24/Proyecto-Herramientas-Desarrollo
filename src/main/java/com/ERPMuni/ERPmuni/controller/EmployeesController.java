@@ -38,20 +38,24 @@ public class EmployeesController {
 
         model.addAttribute("departments", departmentService.getAllDepartments());
 
-        model.addAttribute("userName", userLoged.getEmployee().getNames());
+        model.addAttribute("userName", userLoged.getEmployee() != null ? userLoged.getEmployee().getNames() : userLoged.getEmail());
         model.addAttribute("userRol", userLoged.getRol());
 
         return "employees";
     }
 
     @GetMapping("/inactives")
-    public String employeesFilter(Model model) {
+    public String employeesFilter(Model model, @AuthenticationPrincipal UserDetails user) {
+        UserModel userLoged = user.getUserModel();
 
         model.addAttribute("employees", employeesService.filterEmployees("INACTIVO"));
 
         model.addAttribute("employee", new EmployeesModel());
         
         model.addAttribute("departments", departmentService.getAllDepartments());
+
+        model.addAttribute("userName", userLoged.getEmployee() != null ? userLoged.getEmployee().getNames() : userLoged.getEmail());
+        model.addAttribute("userRol", userLoged.getRol());
 
         return "employees";
     }

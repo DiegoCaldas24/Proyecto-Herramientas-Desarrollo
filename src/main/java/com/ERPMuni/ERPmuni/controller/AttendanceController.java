@@ -19,12 +19,10 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 public class AttendanceController {
 
     private final AttendanceService attendanceService;
-    private final EmployeesService employeesService;
 
     @Autowired
-    public AttendanceController(AttendanceService attendanceService, EmployeesService employeesService) {
+    public AttendanceController(AttendanceService attendanceService) {
         this.attendanceService = attendanceService;
-        this.employeesService = employeesService;
     }
 
     @GetMapping
@@ -44,7 +42,7 @@ public class AttendanceController {
         if (attendanceService.saveAttendance(dniEmployee)) {
             redirectAttributes.addFlashAttribute("message", "Se marco el registro correctamente");
         } else {
-            redirectAttributes.addFlashAttribute("message", "Ocurrio un error al regsitrar");
+            redirectAttributes.addFlashAttribute("message", "Ocurrio un error al regsitrar O No existe ese DNI");
         }
         return "redirect:/registerAttendance";
     }
