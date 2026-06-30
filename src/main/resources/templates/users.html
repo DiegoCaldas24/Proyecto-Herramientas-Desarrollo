@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{fragments/layout :: layout(~{::title},~{::main},'users',~{::script})}">
+<head>
+    <title>Usuarios</title>
+</head>
+<body>
+<main class="main-content">
+    <header class="header">
+        <h2 style="font-size: 1.25rem; font-weight: 600; color: var(--color-text-dark);">Gesti&oacute;n de Usuarios</h2>
+        <div style="display: flex; align-items: center; gap: 16px;">
+            <span style="color: var(--color-text-medium); font-size: 0.875rem; display: none;">Hola, Juan P&eacute;rez</span>
+            <div class="user-avatar">JP</div>
+        </div>
+    </header>
+
+    <div id="popup" class="popup-container" th:if="${message}">
+        <div class="popup-box">
+            <p th:text="${message}"></p>
+        </div>
+    </div>
+
+    <div class="content-area">
+        <section class="management-section">
+            <div class="management-header">
+                <h3 style="font-size: 1.25rem; font-weight: 700; color: var(--color-text-dark); margin: 0;">Lista de Usuarios</h3>
+                <div style="display: flex; gap: 10px">
+                    <button class="btn-add" id="btnAddUser">
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                  d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+                        </svg>
+                        Nuevo Usuario
+                    </button>
+                </div>
+            </div>
+            <div class="table-container">
+                <table class="data-table">
+                    <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Empleado</th>
+                        <th>Email</th>
+                        <th>Rol</th>
+                        <th>Estado</th>
+                        <th>Acciones</th>
+                    </tr>
+                    </thead>
+                    <tbody id="userTableBody">
+                    <tr th:each="u : ${users}">
+                        <td th:text="${u.idUser}"></td>
+                        <td th:text="${u.employee != null ? u.employee.names + ' ' + u.employee.lastName : 'Sin empleado'}"></td>
+                        <td th:text="${u.email}"></td>
+                        <td th:text="${u.rol}"></td>
+                        <td th:text="${u.estatus ? 'Activo' : 'Inactivo'}"></td>
+                        <td class="action-buttons">
+                            <button class="btn-edit" th:attr="data-id=${u.idUser}">Editar</button>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </div>
+
+    <div id="userModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button" onclick="closeModal('userModal')">&times;</span>
+            <h2 id="modalTitle" style="font-size: 1.5rem; font-weight: 700; color: var(--color-primary); margin-bottom: 20px;">Agregar Usuario</h2>
+
+            <form id="userForm" class="modal-form" method="post" th:action="@{/users/save}">
+                <input type="hidden" id="userIdField" name="idUser">
+
+                <div>
+                    <label for="userEmployee">Empleado</label>
+                    <select id="userEmployee" name="idEmployee">
+                        <option value="">Sin empleado</option>
+                        <option th:each="emp : ${employees}" th:value="${emp.idEmployee}"
+                                th:text="${emp.names + ' ' + emp.lastName + ' - ' + emp.dni}"></option>
+                    </select>
+                </div>
+
+                <div>
+                    <label for="userEmail">Email</label>
+                    <input type="email" id="userEmail" name="email" placeholder="Ej: usuario@correo.com" required>
+                </div>
+
+                <div>
+                    <label for="userPassword">Contrase&ntilde;a</label>
+                    <input type="password" id="userPassword" name="password" placeholder="Dejar vac&iacute;o para mantener">
+                </div>
+
+                <div>
+                    <label for="userRol">Rol</label>
+                    <select id="userRol" name="rol" required>
+                        <option value="ADMINISTRADOR">ADMINISTRADOR</option>
+                        <option value="USUARIO">USUARIO</option>
+                        <option value="TRABAJADOR">TRABAJADOR</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label for="userStatus">Estado</label>
+                    <select id="userStatus" name="estatus" required>
+                        <option value="true">Activo</option>
+                        <option value="false">Inactivo</option>
+                    </select>
+                </div>
+
+                <button type="submit" class="btn-save" id="btnSaveUser">Guardar Usuario</button>
+            </form>
+        </div>
+    </div>
+</main>
+
+<script th:src="@{/scripts/users.js}"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const popup = document.getElementById("popup");
+        if (popup) {
+            popup.style.display = "flex";
+            setTimeout(() => {
+                popup.style.display = "none";
+            }, 1500);
+        }
+    });
+</script>
+</body>
+</html>
