@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{fragments/layout :: layout(~{::title},~{::main},'reports',~{::script})}">
+<head>
+    <title>Reportes</title>
+</head>
+<body>
+
+<main class="main-content">
+    <header class="header">
+        <h2 style="font-size: 1.25rem; font-weight: 600; color: var(--color-text-dark);">Panel de Reportes</h2>
+        <div style="display: flex; align-items: center; gap: 16px;">
+            <span style="color: var(--color-text-medium); font-size: 0.875rem; display: none;">Hola, Juan Pérez</span>
+            <div class="user-avatar">JP</div>
+        </div>
+    </header>
+
+    <div class="content-area">
+
+        <section class="metrics-grid">
+            <div class="metric-card">
+                <p class="metric-value" id="totalEmployees">0</p>
+                <p class="metric-label">Empleados Activos</p>
+            </div>
+            <div class="metric-card">
+                <p class="metric-value" style="color: var(--color-secondary);">98.5%</p>
+                <p class="metric-label">Tasa de Asistencia (Mes)</p>
+            </div>
+            <div class="metric-card">
+                <p class="metric-value" style="color: #f59e0b;">5</p>
+                <p class="metric-label">Ausencias Registradas</p>
+            </div>
+            <div class="metric-card">
+                <p class="metric-value" style="color: #ef4444;">1.2%</p>
+                <p class="metric-label">Tasa de Rotación (Anual)</p>
+            </div>
+        </section>
+
+        <section class="chart-section">
+            <div class="chart-card">
+                <h3>Distribución de Empleados por Departamento</h3>
+                <div class="chart-container">
+                    <canvas id="deptChart"></canvas>
+                </div>
+            </div>
+
+            <div class="chart-card">
+                <h3>Estado de Asistencia (Hoy)</h3>
+                <div class="chart-container">
+                    <canvas id="attendanceChart"></canvas>
+                </div>
+            </div>
+        </section>
+
+    </div>
+</main>
+
+<script th:src="@{/scripts/reports.js}"></script>
+</body>
+</html>

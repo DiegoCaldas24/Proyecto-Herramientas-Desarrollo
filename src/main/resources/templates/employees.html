@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{fragments/layout :: layout(~{::title},~{::main},'employees',~{::script})}">
+<head>
+    <title>Empleados</title>
+</head>
+<body>
+<!-- 2. Contenido Principal -->
+<main class="main-content">
+    <header class="header">
+        <h2 style="font-size: 1.25rem; font-weight: 600; color: var(--color-text-dark);">Gestión de Empleados</h2>
+        <div style="display: flex; align-items: center; gap: 16px;">
+            <span style="color: var(--color-text-medium); font-size: 0.875rem; display: none;">Hola, Juan Pérez</span>
+            <div class="user-avatar">JP</div>
+        </div>
+    </header>
+
+    <!-- Popup -->
+    <div id="popup" class="popup-container" th:if="${message}">
+        <div class="popup-box">
+            <p th:text="${message}"></p>
+        </div>
+    </div>
+
+    <div class="content-area">
+
+        <section class="management-section">
+            <div class="management-header">
+                <h3 style="font-size: 1.25rem; font-weight: 700; color: var(--color-text-dark); margin: 0;">Lista de
+                    Empleados</h3>
+                <div style="display: flex; gap: 10px">
+                    <a class="btn-add" id="btnFilterEmployee" th:href="@{/employees/inactives}"
+                       style="text-decoration: none">
+                        Filtrar por inactivos
+                    </a>
+                    <a class="btn-add" id="btnEmployee" th:href="@{/employees}"
+                       style="text-decoration: none">
+                        🔄
+                    </a>
+                    <button class="btn-add" id="btnAddEmployee">
+                        <!-- Icono Más -->
+                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                  d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+                        </svg>
+                        Nuevo Empleado
+                    </button>
+                </div>
+            </div>
+            <div class="table-container">
+                <span style="padding: 5px" th:if="${employees.isEmpty()}">No hay trabajadores inactivos</span>
+                <table class="data-table">
+                    <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nombre</th>
+                        <th>Puesto</th>
+                        <th>Departamento</th>
+                        <th>Correo</th>
+                        <th>Estado</th>
+                        <th>Acciones</th>
+                    </tr>
+                    </thead>
+                    <tbody id="employeeTableBody">
+                    <tr th:each="employee : ${employees}">
+                        <td th:text="${employee.getDni()}"></td>
+                        <td th:text="${employee.getNames()}"></td>
+                        <td th:text="${employee.getPosition()}"></td>
+                        <td th:text="${employee.department.code}"></td>
+                        <td th:text="${employee.getEmail()}"></td>
+                        <td th:text="${employee.getStatus()}"></td>
+                        <td class="action-buttons">
+                            <button class="btn-edit"
+                                    th:attr="data-id=${employee.getIdEmployee()}">
+                                Editar
+                            </button>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </div>
+
+    <div id="employeeModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button" onclick="closeModal('employeeModal')">&times;</span>
+            <h2 id="modalTitle"
+                style="font-size: 1.5rem; font-weight: 700; color: var(--color-primary); margin-bottom: 20px;">Agregar
+                Empleado</h2>
+
+            <form id="employeeForm" class="modal-form"
+                  method="post"
+                  th:action="@{/employees/save}"
+                  th:object="${employee}">
+                <input type="hidden" id="employeeIdField" th:field="*{idEmployee}">
+                <div>
+                    <label for="names">Nombres</label>
+                    <input type="text" th:field="*{names}" id="names" placeholder="Ej: Ana" required>
+                </div>
+
+                <div>
+                    <label for="lastName">Apellidos</label>
+                    <input type="text" th:field="*{lastName}" id="lastName" placeholder="Ej: Gutierrez" required>
+                </div>
+
+                <div>
+                    <label for="dni">DNI</label>
+                    <input type="text" th:field="*{dni}" id="dni" placeholder="Ej: 57612512" minlength="8" maxlength="8"
+                           required>
+                </div>
+
+                <div>
+                    <label for="email">Email</label>
+                    <input type="email" th:field="*{email}" id="email" placeholder="Ej: ejemplo@gmail.com" required>
+                </div>
+
+                <div>
+                    <label for="position">Puesto</label>
+                    <input type="text" th:field="*{position}" id="position" placeholder="Ej: Desarrollador Senior"
+                           required>
+                </div>
+
+                <div>
+                    <label for="salary">Salario</label>
+                    <input type="text" th:field="*{salary}" id="salary" placeholder="Ej: 230.34" min="1" required>
+                </div>
+
+                <div>
+                    <label for="status">Estado</label>
+                    <select id="status" th:field="*{status}" required>
+                        <option value="ACTIVO">ACTIVO</option>
+                        <option value="INACTIVO">INACTIVO</option>
+                        <option value="SUSPENDIDO">SUSPENDIDO</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="employeeDept">Departamento</label>
+                    <select id="employeeDept" th:field="*{department.idDepartment}" required>
+                        <option th:each="department : ${departments}"
+                                th:text="${department.getName()}"
+                                th:value="${department.getIdDepartment()}">
+                        </option>
+                    </select>
+                </div>
+
+
+                <button type="submit" class="btn-save" id="btnSaveEmployee">Guardar Empleado</button>
+            </form>
+        </div>
+    </div>
+</main>
+
+
+<script th:src="@{/scripts/employees.js}"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const popup = document.getElementById("popup");
+
+        if (popup) {
+            popup.style.display = "flex";
+            setTimeout(() => {
+                popup.style.display = "none";
+            }, 1500);
+        }
+    });
+</script>
+</body>
+</html>

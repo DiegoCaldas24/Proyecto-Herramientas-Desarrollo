@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head >
+    <title>Error</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/styles/login.css}">
+</head>
+<body class="flex items-center justify-center min-h-screen">
+
+<main class="login-card">
+    <header class="login-header">
+        <h1>Error</h1>
+        <p>Ha ocurrido un error inesperado.</p>
+    </header>
+
+    <div class="login-form">
+        <a th:href="@{/login}" class="btn-submit" style="text-decoration:none; text-align:center; display:block;">
+            Volver al inicio de sesión
+        </a>
+    </div>
+</main>
+</body>
+</html>

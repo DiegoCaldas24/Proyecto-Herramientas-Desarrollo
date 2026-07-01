@@ -4,6 +4,7 @@ import com.ERPMuni.ERPmuni.model.UserModel;
 import com.ERPMuni.ERPmuni.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -16,5 +17,17 @@ public class UserService {
 
     public Optional<UserModel> findByEmail(String email) {
         return repository.findByEmail(email);
+    }
+
+    public List<UserModel> findAll() {
+        return repository.findAll();
+    }
+
+    public void save(UserModel user) {
+        repository.save(user);
+    }
+
+    public Optional<UserModel> findById(int id) {
+        return repository.findById(id);
     }
 }
