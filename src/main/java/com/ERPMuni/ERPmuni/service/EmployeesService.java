@@ -4,6 +4,7 @@ import com.ERPMuni.ERPmuni.model.EmployeesModel;
 import com.ERPMuni.ERPmuni.repository.EmployeesRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -26,6 +27,7 @@ public class EmployeesService {
         return employeesRepository.findEmployeesModelByStatus(status);
     }
 
+    @Transactional
     public void saveEmployee(EmployeesModel employeesModel) {
         employeesRepository.save(employeesModel);
     }

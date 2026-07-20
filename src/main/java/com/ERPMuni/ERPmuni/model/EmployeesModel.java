@@ -7,7 +7,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 @Data
 @Entity
@@ -41,7 +40,7 @@ public class EmployeesModel {
      private String phone;
 
     @Column(name = "date_hire")
-    private String date_hire;
+    private LocalDate date_hire;
 
     @Column(name = "salary")
     private double salary;
@@ -50,14 +49,17 @@ public class EmployeesModel {
     private String position;
 
     @Column(name = "status")
+    @Builder.Default
     private String status = "ACTIVO";
 
     @Column(name = "registration_date")
-    private String registration_date;
+    private LocalDate registration_date;
 
     @PrePersist
     protected void onCreate() {
-        date_hire = LocalDate.now().toString();
-        registration_date = LocalDate.now().toString();
+        if (date_hire == null) {
+            date_hire = LocalDate.now();
+        }
+        registration_date = LocalDate.now();
     }
 }

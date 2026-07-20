@@ -26,6 +26,7 @@
 
             <div class="metric-card card-success">
                 <p class="metric-title">A Tiempo Hoy</p>
+                <p class="metric-value" th:text="${attendanceWell}"></p>
                 <div class="metric-detail text-success">
                     <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l5 5l10-10">
@@ -37,6 +38,7 @@
 
             <div class="metric-card card-warning">
                 <p class="metric-title">Tardanzas Hoy</p>
+                <p class="metric-value" th:text="${attendanceMid}"></p>
                 <div class="metric-detail text-warning">
                     <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -47,7 +49,8 @@
             </div>
 
             <div class="metric-card card-danger">
-                <p class="metric-title">Ausencias Reportadas</p>
+                <p class="metric-title">Ausencias Hoy</p>
+                <p class="metric-value" th:text="${attendanceBad}"></p>
                 <div class="metric-detail text-danger">
                     <!-- Icono Rayo -->
                     <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">

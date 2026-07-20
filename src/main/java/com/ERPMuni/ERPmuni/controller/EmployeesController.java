@@ -5,6 +5,7 @@ import com.ERPMuni.ERPmuni.model.UserModel;
 import com.ERPMuni.ERPmuni.security.UserDetails;
 import com.ERPMuni.ERPmuni.service.DepartmentService;
 import com.ERPMuni.ERPmuni.service.EmployeesService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
@@ -14,6 +15,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 
+@Slf4j
 @Controller
 @RequestMapping("/employees")
 public class EmployeesController {
@@ -68,6 +70,7 @@ public class EmployeesController {
             employeesService.saveEmployee(employeesModel);
             redirectAttributes.addFlashAttribute("message", "Se realizo correctamente la accion");
         } catch (Exception e) {
+            log.error("Error al guardar el empleado con DNI {}", employeesModel.getDni(), e);
             redirectAttributes.addFlashAttribute("message", "Error en la accion");
         }
         return "redirect:/employees";

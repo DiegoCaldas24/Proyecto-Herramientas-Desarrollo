@@ -29,9 +29,9 @@ public class DashboardController {
         UserModel userLoged = user.getUserModel();
         model.addAttribute("count", employeesService.countEmployees());
         model.addAttribute("assistance", attendanceService.findAllRegisters());
-        model.addAttribute("attendanceWell", attendanceService.getCountAttendaceWell());
-        model.addAttribute("attendanceMid", attendanceService.getCountAttendaceMid());
-        model.addAttribute("attendanceBad", attendanceService.getCountAttendaceBad());
+        model.addAttribute("attendanceWell", attendanceService.getCountAttendanceWellToday());
+        model.addAttribute("attendanceMid", attendanceService.getCountAttendanceMidToday());
+        model.addAttribute("attendanceBad", attendanceService.getCountAttendanceBadToday());
         model.addAttribute("userName", userLoged.getEmployee() != null ? userLoged.getEmployee().getNames() : userLoged.getEmail());
         model.addAttribute("userRol", userLoged.getRol());
         return "dashboard";

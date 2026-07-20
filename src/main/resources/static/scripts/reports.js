@@ -1,21 +1,35 @@
-async function getDataApi() {
+async function getEmployees() {
     try {
-        const response = await fetch("http://localhost:8080/employees/data");
+        const response = await fetch("/employees/data");
         return await response.json();
     } catch (error) {
-        console.error("Error al obtener datos:", error);
+        console.error("Error al obtener empleados:", error);
         return [];
     }
 }
 
-
-async function getEmployees() {
-    return await getDataApi();
+async function getReportsMetrics() {
+    try {
+        const response = await fetch("/reports/data");
+        return await response.json();
+    } catch (error) {
+        console.error("Error al obtener metricas de reportes:", error);
+        return {
+            activeEmployees: 0,
+            attendanceRateMonth: 0,
+            absencesMonth: 0,
+            turnoverRate: 0,
+            todayPresent: 0,
+            todayLate: 0,
+            todayAbsent: 0
+        };
+    }
 }
 
 
 async function getReportData() {
-    const employees = await getEmployees(); // Espera datos reales
+    const employees = await getEmployees();
+    const metrics = await getReportsMetrics();
 
 
     const deptCounts = employees.reduce((acc, employee) => {
@@ -25,23 +39,27 @@ async function getReportData() {
     }, {});
 
 
-    const attendanceData = {
-        present: 45,
-        absent: 3,
-        late: 2
-    };
-
     return {
-        totalEmployees: employees.length,
+        totalEmployees: metrics.activeEmployees,
         deptLabels: Object.keys(deptCounts),
         deptData: Object.values(deptCounts),
-        attendanceData
+        attendanceRateMonth: metrics.attendanceRateMonth,
+        absencesMonth: metrics.absencesMonth,
+        turnoverRate: metrics.turnoverRate,
+        attendanceData: {
+            present: metrics.todayPresent,
+            absent: metrics.todayAbsent,
+            late: metrics.todayLate
+        }
     };
 }
 
 
 function renderMetrics(data) {
     document.getElementById('totalEmployees').textContent = data.totalEmployees;
+    document.getElementById('attendanceRate').textContent = `${data.attendanceRateMonth}%`;
+    document.getElementById('absencesCount').textContent = data.absencesMonth;
+    document.getElementById('turnoverRate').textContent = `${data.turnoverRate}%`;
 }
 
 function renderDeptChart(labels, data) {

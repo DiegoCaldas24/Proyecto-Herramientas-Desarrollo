@@ -4,14 +4,18 @@ import com.ERPMuni.ERPmuni.model.AttendanceModel;
 import com.ERPMuni.ERPmuni.model.EmployeesModel;
 import com.ERPMuni.ERPmuni.repository.AttendanceRepository;
 import com.ERPMuni.ERPmuni.repository.EmployeesRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.List;
 import java.util.Optional;
 
+@Slf4j
 @Service
 public class AttendanceService{
 
@@ -26,25 +30,31 @@ public class AttendanceService{
         this.employeesRepository = employeesRepository;
     }
 
+    @Transactional
     public boolean saveAttendance(String dniEmployee) {
         try{
-            AttendanceModel employee =  attendanceRepository.findByEmployees_Dni(dniEmployee).orElse(null);
+            LocalDate today = LocalDate.now();
             LocalDateTime hour = LocalDateTime.now();
-            if(employee == null) {
+            AttendanceModel attendanceToday = attendanceRepository
+                    .findByEmployees_DniAndAttendanceDate(dniEmployee, today)
+                    .orElse(null);
+
+            if(attendanceToday == null) {
                 AttendanceModel attendanceModel = new AttendanceModel();
                 attendanceModel.setEmployees(employeesRepository.findByDni(dniEmployee).get());
-                attendanceModel.setEntryDate(hour);
+                attendanceModel.setAttendanceDate(today);
                 attendanceModel.setEntryDate(hour);
                 attendanceModel.setStatusExit("ENTRADA");
                 attendanceModel.setStatus(entryValue(hour));
                 attendanceRepository.save(attendanceModel);
             }else{
-                employee.setDepartureDate(hour);
-                employee.setStatusExit("SALIDA");
-                attendanceRepository.save(employee);
+                attendanceToday.setDepartureDate(hour);
+                attendanceToday.setStatusExit("SALIDA");
+                attendanceRepository.save(attendanceToday);
             }
             return true;
         }catch(Exception e){
+            log.error("Error al registrar asistencia para el DNI {}", dniEmployee, e);
             return false;
         }
     }
@@ -79,26 +89,39 @@ public class AttendanceService{
         }
     }
 
+    @Transactional
     public void procesarFaltasDelDia() {
-        LocalDateTime hoy = LocalDateTime.now();
+        LocalDate hoy = LocalDate.now();
 
         List<EmployeesModel> empleados = employeesRepository.findAll();
 
         for (EmployeesModel emp : empleados) {
 
             boolean registroHoy = attendanceRepository
-                    .findByEmployees_IdEmployeeAndEntryDate(emp.getIdEmployee(), hoy)
+                    .findByEmployees_IdEmployeeAndAttendanceDate(emp.getIdEmployee(), hoy)
                     .isPresent();
 
             if (!registroHoy) {
                 AttendanceModel falta = new AttendanceModel();
                 falta.setEmployees(emp);
-                falta.setEntryDate(hoy);
+                falta.setAttendanceDate(hoy);
                 falta.setStatus("FALTA");
 
                 attendanceRepository.save(falta);
             }
         }
+    }
+
+    public long getCountAttendanceWellToday() {
+        return attendanceRepository.countByStatusAndAttendanceDate("TEMPRANO", LocalDate.now());
+    }
+
+    public long getCountAttendanceMidToday() {
+        return attendanceRepository.countByStatusAndAttendanceDate("TARDE", LocalDate.now());
+    }
+
+    public long getCountAttendanceBadToday() {
+        return attendanceRepository.countByStatusAndAttendanceDate("FALTA", LocalDate.now());
     }
 
 }

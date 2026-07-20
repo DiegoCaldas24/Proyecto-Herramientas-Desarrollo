@@ -6,6 +6,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Builder
@@ -13,7 +14,8 @@ import java.time.LocalDateTime;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "attendances")
+@Table(name = "attendances",
+        uniqueConstraints = @UniqueConstraint(name = "uk_attendance_employee_date", columnNames = {"id_employee", "attendance_date"}))
 public class AttendanceModel {
 
     @Id
@@ -23,6 +25,9 @@ public class AttendanceModel {
     @ManyToOne
     @JoinColumn(name = "id_employee")
     private EmployeesModel employees;
+
+    @Column(name = "attendance_date")
+    private LocalDate attendanceDate;
 
     @Column(name = "entry_date")
     private LocalDateTime entryDate;
@@ -35,5 +40,12 @@ public class AttendanceModel {
 
     @Column(name = "status")
     private String status;
+
+    @PrePersist
+    protected void onCreate() {
+        if (attendanceDate == null) {
+            attendanceDate = LocalDate.now();
+        }
+    }
 
 }

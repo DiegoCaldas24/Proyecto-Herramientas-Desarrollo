@@ -6,7 +6,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -17,9 +17,9 @@ public interface AttendanceRepository extends JpaRepository<AttendanceModel, Int
 
     Optional<AttendanceModel> findByEmployees_IdEmployee(int idEmployee);
 
-    Optional<AttendanceModel> findByEmployees_Dni(String dniEmployee);
+    Optional<AttendanceModel> findByEmployees_DniAndAttendanceDate(String dniEmployee, LocalDate attendanceDate);
 
-    Optional<AttendanceModel> findByEmployees_IdEmployeeAndEntryDate(int idEmployee, LocalDateTime entryDate);
+    Optional<AttendanceModel> findByEmployees_IdEmployeeAndAttendanceDate(int idEmployee, LocalDate attendanceDate);
 
     List<AttendanceModel> findAll();
 
@@ -31,4 +31,10 @@ public interface AttendanceRepository extends JpaRepository<AttendanceModel, Int
 
     @Query("SELECT COUNT(a.status) FROM AttendanceModel a WHERE a.status = 'FALTA'")
     int countStatusBad();
+
+    long countByStatusAndAttendanceDate(String status, LocalDate attendanceDate);
+
+    long countByAttendanceDateBetween(LocalDate start, LocalDate end);
+
+    long countByStatusAndAttendanceDateBetween(String status, LocalDate start, LocalDate end);
 }
